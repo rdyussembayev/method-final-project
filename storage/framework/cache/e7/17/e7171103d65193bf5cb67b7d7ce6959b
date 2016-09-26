@@ -1,0 +1,118 @@
+1474895854a:1:{s:7:"nav.htm";a:6:{s:8:"fileName";s:7:"nav.htm";s:7:"content";s:2192:"==
+{# Note: Only one levels of sublinks are supported by Bootstrap 3 #}
+{% set
+    links = {
+	    'home':      ['home', 'Главная'],
+		'about':     ['samples/about-us', 'О нас'],
+		'products':  ['samples/products', 'Предложения'],
+        'contact':   ['samples/contact-us', 'Контакты'],
+    }
+%}
+
+{% macro render_menu(links) %}
+    {% for code, link in links %}
+        <li class="{{ code == currentPage ? 'active' }} {{ link.sublinks ? 'dropdown' }}">
+            <a
+                href="{{ link.sublinks ? '#' : (link.page ?: link[0])|page }}"
+                {% if link.sublinks %}data-toggle="dropdown"{% endif %}
+                class="{{ link.sublinks ? 'dropdown-toggle' }}"
+            >
+                {{ link.name ?: link[1] }}
+                {% if link.sublinks %}<span class="caret"></span>{% endif %}
+            </a>
+            {% if link.sublinks %}
+                <span class="dropdown-arrow"></span>
+                <ul class="dropdown-menu">
+                    {{ _self.render_menu(link.sublinks) }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+{% endmacro %}
+
+{% import _self as nav %}
+
+<div id="main-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="logo">
+                    <a href="{{ 'home'|page }}"><img src="{{ 'assets/images/logo.png'|theme }}" title="Grill Template" alt="Grill Website Template" ></a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="main-menu">
+                    <ul>
+                        {{ nav.render_menu(links) }}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="search-box">  
+                    <form role="form" name="search_form" method="get" class="search_form">
+                        <input id="search" type="text" />
+                        <input type="submit" id="search-button" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>";s:5:"mtime";i:1474290536;s:6:"markup";s:2189:"{# Note: Only one levels of sublinks are supported by Bootstrap 3 #}
+{% set
+    links = {
+	    'home':      ['home', 'Главная'],
+		'about':     ['samples/about-us', 'О нас'],
+		'products':  ['samples/products', 'Предложения'],
+        'contact':   ['samples/contact-us', 'Контакты'],
+    }
+%}
+
+{% macro render_menu(links) %}
+    {% for code, link in links %}
+        <li class="{{ code == currentPage ? 'active' }} {{ link.sublinks ? 'dropdown' }}">
+            <a
+                href="{{ link.sublinks ? '#' : (link.page ?: link[0])|page }}"
+                {% if link.sublinks %}data-toggle="dropdown"{% endif %}
+                class="{{ link.sublinks ? 'dropdown-toggle' }}"
+            >
+                {{ link.name ?: link[1] }}
+                {% if link.sublinks %}<span class="caret"></span>{% endif %}
+            </a>
+            {% if link.sublinks %}
+                <span class="dropdown-arrow"></span>
+                <ul class="dropdown-menu">
+                    {{ _self.render_menu(link.sublinks) }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+{% endmacro %}
+
+{% import _self as nav %}
+
+<div id="main-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="logo">
+                    <a href="{{ 'home'|page }}"><img src="{{ 'assets/images/logo.png'|theme }}" title="Grill Template" alt="Grill Website Template" ></a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="main-menu">
+                    <ul>
+                        {{ nav.render_menu(links) }}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="search-box">  
+                    <form role="form" name="search_form" method="get" class="search_form">
+                        <input id="search" type="text" />
+                        <input type="submit" id="search-button" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>";s:4:"code";N;s:17:"_PARSER_ERROR_INI";s:0:"";}}

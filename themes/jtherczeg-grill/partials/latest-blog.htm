@@ -1,0 +1,67 @@
+[blogPosts]
+pageNumber = "{{ :page }}"
+postsPerPage = 10
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "samples/single-post"
+postPage = 404
+==
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="heading-section">
+                <h2>Предложения</h2>
+                <img src="{{ 'assets/images/under-heading.png'|theme }}" alt="" >
+            </div>
+        </div>
+    </div>
+    
+     {% set posts = blogPosts.posts %}
+
+        <div class="row" id="Container">    
+            
+      <div class="col-md-12">
+           {% for post in posts %}
+          
+            <div class="col-md-4 col-sm-6 pull-right">
+                <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+
+                    <p class="info">
+                        Posted
+                        {% if post.categories.count %} in {% endif %}
+                        {% for category in post.categories %}
+                            <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                        on {{ post.published_at|date('M d, Y') }}
+                    </p>
+
+                    <p class="excerpt">{{ post.summary }}</p>
+                        <div class="portfolio-wrapper">                
+                            <div class="portfolio-thumb">
+                            
+                            {%for  image  in post.featured_images  %}
+                                <img src="{{image.path |raw }}" alt="">
+                            {%endfor%}
+                            
+                           
+                            </div>
+                        </div>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+       
+       <div class="pagination">
+			<div class="row">   
+				<div class="col-md-12">
+					<ul>
+						<li><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">>></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+</div>
